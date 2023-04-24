@@ -13,6 +13,10 @@ import isMobilePhone from 'validator/es/lib/isMobilePhone';
 export default function DirectChatForm() {
  const [phoneNumber,setPhoneNumber] = useState('')
 
+ const isValidMobileNumber=  () =>{
+  return isMobilePhone(`${"+91"}${phoneNumber.replace(/\s|\+91/g, "")}`, 'en-IN')
+ } 
+
   return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -48,7 +52,7 @@ export default function DirectChatForm() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              disabled={!isMobilePhone(`${"+91"}${phoneNumber}`, 'en-IN')}
+              disabled={!isValidMobileNumber()}
             >
              Send Message
             </Button>
