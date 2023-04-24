@@ -1,5 +1,5 @@
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Avatar from '@mui/material/Avatar';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -8,6 +8,7 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
+import isMobilePhone from 'validator/es/lib/isMobilePhone';
 
 export default function DirectChatForm() {
  const [phoneNumber,setPhoneNumber] = useState('')
@@ -23,9 +24,9 @@ export default function DirectChatForm() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <WhatsAppIcon sx={{ m: 1,  }}>
             <LockOutlinedIcon />
-          </Avatar>
+          </WhatsAppIcon>
           <Typography component="h1" variant="h5">
           One Click WhatsApp Message
           </Typography>
@@ -47,6 +48,7 @@ export default function DirectChatForm() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={!isMobilePhone(`${"+91"}${phoneNumber}`, 'en-IN')}
             >
              Send Message
             </Button>
