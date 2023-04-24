@@ -7,7 +7,7 @@ export const ColorModeContext = React.createContext({
 	toggleColorMode: () => {},
 });
 const RootComponent = () => {
-	const [mode, setMode] = useState<PaletteMode>('light');
+	const [mode, setMode] = useState<PaletteMode>(() => getDefaultThemePreference());
 	const colorMode = useMemo(
 		() => ({
 			toggleColorMode: () => {
@@ -36,3 +36,8 @@ const RootComponent = () => {
 	);
 };
 export default RootComponent;
+
+// Util function 
+function getDefaultThemePreference():PaletteMode {
+    return localStorage.getItem('direct-chat-theme-preference')==='dark'?'dark':'light'
+}

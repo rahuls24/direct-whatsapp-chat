@@ -76,7 +76,19 @@ const AppHeader = () => {
 						</Typography>
 						<MaterialUISwitch
 							checked={theme.palette.mode === 'dark'}
-							onChange={colorMode.toggleColorMode}
+							onChange={event => {
+								if (event.target.checked)
+									localStorage.setItem(
+										'direct-chat-theme-preference',
+										'dark',
+									);
+								else
+									localStorage.setItem(
+										'direct-chat-theme-preference',
+										'light',
+									);
+								colorMode.toggleColorMode();
+							}}
 							inputProps={{ 'aria-label': 'controlled' }}
 						/>
 					</Box>
