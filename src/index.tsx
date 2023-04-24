@@ -4,41 +4,22 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import setupFirebase from './config/firebase/firebaseSetup';
+import RootComponent from './config/root/RootComponent';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
-// Firebase setup 
-// Import the functions you need from the SDKs you need
-import { getAnalytics } from "firebase/analytics";
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyAkXRlmdsi-GDzy8IO3XibMdWWAu71egmY",
-  authDomain: "direct-chatt.firebaseapp.com",
-  projectId: "direct-chatt",
-  storageBucket: "direct-chatt.appspot.com",
-  messagingSenderId: "1034351870673",
-  appId: "1:1034351870673:web:c91ad33dd140559e54fbf0",
-  measurementId: "G-LLTPKB3PPR"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-getAnalytics(app);
-
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+	document.getElementById('root') as HTMLElement,
 );
+// Initialize Firebase
+setupFirebase()
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+	<React.StrictMode>
+		<RootComponent />
+	</React.StrictMode>,
 );
 
 // If you want your app to work offline and load faster, you can change
