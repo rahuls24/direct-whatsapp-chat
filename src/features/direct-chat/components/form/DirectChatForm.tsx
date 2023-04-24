@@ -41,7 +41,7 @@ export default function DirectChatForm() {
               autoFocus
               onChange={(e)=> setPhoneNumber(e.target.value)}
             />
-          <Link href={`mailto:${phoneNumber}`}>
+          <Link href={`https://wa.me/+91${phoneNumber}`}>
           <Button
              
               fullWidth
