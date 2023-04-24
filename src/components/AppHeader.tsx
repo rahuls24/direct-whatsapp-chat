@@ -1,11 +1,15 @@
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 import Switch from '@mui/material/Switch';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { styled, useTheme } from '@mui/material/styles';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ColorModeContext } from '../config/root/RootComponent';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
@@ -56,45 +60,97 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 	},
 }));
 
+const languages = [
+	{
+	  code: 'hn',
+	  name: '',
+
+	},
+	{
+	  code: 'en',
+	  name: 'English',
+	  country_code: 'gb',
+	},
+	{
+	  code: 'ar',
+	  name: 'العربية',
+	  dir: 'rtl',
+	  country_code: 'sa',
+	},
+  ]
+
 const AppHeader = () => {
 	const theme = useTheme();
 	const colorMode = useContext(ColorModeContext);
+	const { t } = useTranslation();
+
+	const [anchorElForLang, setAnchorElForLang] = useState(null);
+	const open = Boolean(anchorElForLang);
+	const handleClick = (event: any) => {
+		setAnchorElForLang(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorElForLang(null);
+	};
+
 	return (
-		<AppBar position='static' sx={{ marginBottom: '0px' }}>
-			<Container maxWidth='xl'>
-				<Toolbar disableGutters>
-					<Box
-						sx={{
-							width: '100%',
-							display: 'flex',
-							justifyContent: 'space-between',
-							alignItems: 'center',
-						}}
-					>
-						<Typography variant='h6' component='div' gutterBottom>
-							{'Direct Chat'}
-						</Typography>
-						<MaterialUISwitch
-							checked={theme.palette.mode === 'dark'}
-							onChange={event => {
-								if (event.target.checked)
-									localStorage.setItem(
-										'direct-chat-theme-preference',
-										'dark',
-									);
-								else
-									localStorage.setItem(
-										'direct-chat-theme-preference',
-										'light',
-									);
-								colorMode.toggleColorMode();
+		<>
+			<AppBar position='static' sx={{ marginBottom: '0px' }}>
+				<Container maxWidth='xl'>
+					<Toolbar disableGutters>
+						<Box
+							sx={{
+								width: '100%',
+								display: 'flex',
+								justifyContent: 'space-between',
+								alignItems: 'center',
 							}}
-							inputProps={{ 'aria-label': 'controlled' }}
-						/>
-					</Box>
-				</Toolbar>
-			</Container>
-		</AppBar>
+						>
+							<Typography
+								variant='h6'
+								component='div'
+								gutterBottom
+							>
+								{t('appTitle')}
+							</Typography>
+							<Box>
+								<MaterialUISwitch
+									checked={theme.palette.mode === 'dark'}
+									onChange={event => {
+										if (event.target.checked)
+											localStorage.setItem(
+												'direct-chat-theme-preference',
+												'dark',
+											);
+										else
+											localStorage.setItem(
+												'direct-chat-theme-preference',
+												'light',
+											);
+										colorMode.toggleColorMode();
+									}}
+									inputProps={{ 'aria-label': 'controlled' }}
+								/>
+								<Button  onClick={handleClick}>{t('language')}</Button>
+							</Box>
+						</Box>
+					</Toolbar>
+				</Container>
+			</AppBar>
+			<Menu
+				id='basic-menu'
+				anchorEl={anchorElForLang}
+				open={open}
+				onClose={handleClose}
+				MenuListProps={{
+					'aria-labelledby': 'basic-button',
+				}}
+			>
+				<MenuItem onClick={handleClose}>Profile</MenuItem>
+				<MenuItem onClick={handleClose}>My account</MenuItem>
+				<MenuItem onClick={handleClose}>Logout</MenuItem>
+			</Menu>
+		</>
 	);
 };
 export default AppHeader;

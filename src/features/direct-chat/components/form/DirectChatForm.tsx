@@ -8,59 +8,63 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import isMobilePhone from 'validator/es/lib/isMobilePhone';
-
 export default function DirectChatForm() {
- const [phoneNumber,setPhoneNumber] = useState('')
+	const { t } = useTranslation();
+	const [phoneNumber, setPhoneNumber] = useState('');
+	const isValidMobileNumber = () => {
+		return isMobilePhone(
+			`${'+91'}${phoneNumber.replace(/\s|\+91/g, '')}`,
+			'en-IN',
+		);
+	};
 
- const isValidMobileNumber=  () =>{
-  return isMobilePhone(`${"+91"}${phoneNumber.replace(/\s|\+91/g, "")}`, 'en-IN')
- } 
 
-  return (
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <WhatsAppIcon sx={{ m: 1,  }}>
-            <LockOutlinedIcon />
-          </WhatsAppIcon>
-          <Typography component="h1" variant="h5">
-          One Click WhatsApp Message
-          </Typography>
-          <Box sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="mobileNumber"
-              label="Phone Number"
-              name="mobileNumber"
-              autoComplete="mobileNumber"
-              autoFocus
-              onChange={(e)=> setPhoneNumber(e.target.value)}
-            />
-          <Link href={`https://wa.me/+91${phoneNumber}`}>
-          <Button
-             
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              disabled={!isValidMobileNumber()}
-            >
-             Send Message
-            </Button>
-          </Link>
-          
-
-          </Box>
-        </Box>
-      </Container>
-  );
+	return (
+		<Container component='main' maxWidth='xs'>
+			<CssBaseline />
+			<Box
+				sx={{
+					marginTop: 1,
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+				}}
+			>
+				<WhatsAppIcon sx={{ m: 1 }}>
+					<LockOutlinedIcon />
+				</WhatsAppIcon>
+				<Typography component='h1' variant='h5'>
+					{t('directChatFormTitle')}
+				</Typography>
+				<Box sx={{ mt: 1 }}>
+					<TextField
+						margin='normal'
+						required
+						fullWidth
+						id='mobileNumber'
+						label={t('phoneNumber')}
+						name='mobileNumber'
+						autoComplete='mobileNumber'
+						autoFocus
+						onChange={e => setPhoneNumber(e.target.value)}
+					/>
+					<Box>
+					
+						<Link href={`https://wa.me/+91${phoneNumber}`}>
+							<Button
+								fullWidth
+								variant='contained'
+								sx={{ mt: 3, mb: 2 }}
+								disabled={!isValidMobileNumber()}
+							>
+								{t('sendMessage')}
+							</Button>
+						</Link>
+					</Box>
+				</Box>
+			</Box>
+		</Container>
+	);
 }
