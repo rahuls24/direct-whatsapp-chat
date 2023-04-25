@@ -16,6 +16,10 @@ export default function DirectChatForm() {
  const isValidMobileNumber=  () =>{
   return isMobilePhone(`${"+91"}${phoneNumber.replace(/\s|\+91/g, "")}`, 'en-IN')
  } 
+ const getLink = () =>{
+  if(!isValidMobileNumber()) return '#'
+  return `https://wa.me/+91${phoneNumber.replace(/\s|\+91/g, "")}`
+ }
 
   return (
       <Container component="main" maxWidth="xs">
@@ -46,7 +50,7 @@ export default function DirectChatForm() {
               autoFocus
               onChange={(e)=> setPhoneNumber(e.target.value)}
             />
-          <Link href={`https://wa.me/+91${phoneNumber.replace(/\s|\+91/g, "")}`} underline="none">
+          <Link href={getLink()} underline="none">
           <Button
              
               fullWidth
