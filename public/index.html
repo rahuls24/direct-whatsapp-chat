@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Direct Whatsapp Chat is a web app that allows users to send messages on WhatsApp without the need to save a contact to their contact list." />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description"
+    content="Direct Whatsapp Chat is a web app that allows users to send messages on WhatsApp without the need to save a contact to their contact list." />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -21,12 +23,113 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Direct Chat </title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
+  <title>Direct Chat </title>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .header-skeleton {
+      width: 100%;
+      height: 64px;
+      background-color: #f0f0f0;
+    }
+
+    .header-skeleton-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      height: 100%;
+    }
+
+    .header-skeleton-heading {
+      width: 120px;
+      height: 16px;
+      background-color: #d9d9d9;
+      border-radius: 4px;
+    }
+
+    .header-skeleton-toggle {
+      width: 40px;
+      height: 24px;
+      background-color: #d9d9d9;
+      border-radius: 4px;
+    }
+
+    .form-skeleton {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 300px;
+      margin-top: 8px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+    }
+
+    .form-skeleton-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #d9d9d9;
+      border-radius: 50%;
+    }
+
+    .form-skeleton-heading {
+      margin-top: 16px;
+      width: 120px;
+      height: 16px;
+      background-color: #d9d9d9;
+      border-radius: 4px;
+    }
+
+    .form-skeleton-input {
+      margin-top: 24px;
+      width: 240px;
+      height: 40px;
+      background-color: #d9d9d9;
+      border-radius: 4px;
+    }
+
+    .form-skeleton-submit {
+      margin-top: 24px;
+      width: 120px;
+      height: 40px;
+      background-color: #d9d9d9;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <div class="container">
+      <div class="header-skeleton">
+        <div class="header-skeleton-content">
+          <div class="header-skeleton-heading"></div>
+          <div class="header-skeleton-toggle"></div>
+        </div>
+      </div>
+
+      <div class="form-skeleton">
+        <div class="form-skeleton-icon"></div>
+        <div class="form-skeleton-heading"></div>
+        <div class="form-skeleton-input"></div>
+        <div class="form-skeleton-submit"></div>
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+  <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -36,5 +139,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
+</body>
+
 </html>
