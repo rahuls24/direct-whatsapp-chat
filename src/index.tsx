@@ -4,7 +4,6 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import setupFirebase from './config/firebase/firebaseSetup';
 import RootComponent from './config/root/RootComponent';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
@@ -13,8 +12,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement,
 );
-// Initialize Firebase
-setupFirebase()
+
 
 root.render(
 	<React.StrictMode>

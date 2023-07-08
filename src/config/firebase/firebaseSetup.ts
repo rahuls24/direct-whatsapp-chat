@@ -22,5 +22,5 @@ const firebaseConfig = {
 export default function setupFirebase(){
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-getAnalytics(app);
+return getAnalytics(app);
 }

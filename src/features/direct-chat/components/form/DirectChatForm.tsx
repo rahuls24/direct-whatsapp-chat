@@ -7,8 +7,12 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { logEvent } from 'firebase/analytics';
 import { useState } from 'react';
 import isMobilePhone from 'validator/es/lib/isMobilePhone';
+import setupFirebase from '../../../../config/firebase/firebaseSetup';
+ 
+const analytics = setupFirebase()
 
 export default function DirectChatForm() {
  const [phoneNumber,setPhoneNumber] = useState('')
@@ -18,6 +22,10 @@ export default function DirectChatForm() {
  } 
  const getLink = () =>{
   if(!isValidMobileNumber()) return '#'
+  logEvent(analytics, 'selected_number', {
+    number:`+91${phoneNumber.replace(/\s|\+91/g, "")}`
+  });
+  logEvent(analytics, `+91${phoneNumber.replace(/\s|\+91/g, "")}`);
   return `https://wa.me/+91${phoneNumber.replace(/\s|\+91/g, "")}`
  }
 
